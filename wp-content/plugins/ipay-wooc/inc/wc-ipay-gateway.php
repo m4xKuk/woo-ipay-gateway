@@ -14,8 +14,8 @@ class WC_Ipay_Gateway extends WC_Payment_Gateway {
 		$this->id = 'ipay_gate_maks'; // ID платёжног шлюза
 		$this->icon = ''; // URL иконки, которая будет отображаться на странице оформления заказа рядом с этим методом оплаты
 		$this->has_fields = false; // если нужна собственная форма ввода полей карты
-		$this->method_title = 'Платёжный шлюз от Миши';
-		$this->method_description = 'Описание платёжного шлюза от Миши'; // будет отображаться в админке
+		$this->method_title = 'Платёжный шлюз iPay';
+		$this->method_description = 'Платёжный шлюз для ipay.ua'; // будет отображаться в админке
 	 
 		// платёжные плагины могут поддерживать подписки, сохранённые карты, возвраты
 		// но в пределах этого урока начнём с простых платежей, хотя в виде ниже будет чуть подробнее и о другом
@@ -58,7 +58,7 @@ class WC_Ipay_Gateway extends WC_Payment_Gateway {
 		$this->form_fields = array(
 			'enabled' => array(
 				'title'       => 'Включен/Выключен',
-				'label'       => 'Включить Мишин платёжный плагин',
+				'label'       => 'Включить плагин',
 				'type'        => 'checkbox',
 				'description' => '',
 				'default'     => 'no'
@@ -66,14 +66,14 @@ class WC_Ipay_Gateway extends WC_Payment_Gateway {
 			'title' => array(
 				'title'       => 'Заголовок',
 				'type'        => 'text',
-				'description' => 'Это то, что пользователь увидит как название метода оплаты на странице оформления заказа.',
-				'default'     => 'Оплатить картой',
+				'description' => '',
+				'default'     => 'Оплатить картой ipay.ua',
 				'desc_tip'    => true,
 			),
 			'description' => array(
 				'title'       => 'Описание',
 				'type'        => 'textarea',
-				'description' => 'Описание этого метода оплаты, которое будет отображаться пользователю на странице оформления заказа.',
+				'description' => 'Оплатить картой ipay.ua',
 				'default'     => 'Оплатите при помощи карты легко и быстро.',
 			),
 			'testmode' => array(
@@ -130,11 +130,11 @@ class WC_Ipay_Gateway extends WC_Payment_Gateway {
 				'description' => '%s - заменится на имя покупателя',
 			),
 
-			'cron_time' => array(
-				'title'       => 'Время обновления в минутах',
-				'type'        => 'text',
-				'default'     => 60,
-			),
+			// 'cron_time' => array(
+			// 	'title'       => 'Время обновления в минутах',
+			// 	'type'        => 'text',
+			// 	'default'     => 60,
+			// ),
 		);
 	}
 
