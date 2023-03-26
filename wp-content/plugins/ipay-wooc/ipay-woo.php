@@ -51,3 +51,23 @@ function ipay_plugin_deactivate() {
 }
 register_deactivation_hook( __FILE__, 'ipay_plugin_deactivate');
 //<--
+
+
+add_filter( 'manage_edit-shop_order_columns', 'register_is_first_order_column', 10, 1 );
+function register_is_first_order_column( $columns ) {
+    $columns['is_first_order'] = apply_filters( 'order_table_title_ipay', 'Ipay: id платежа' );
+    return $columns;
+}
+ 
+add_action( 'manage_shop_order_posts_custom_column', 'display_is_first_order_column', 10, 1 );
+function display_is_first_order_column( $column ) {
+    global $post;
+ 
+    if ( 'is_first_order' === $column ) {
+        $is_first_order = get_post_meta( $post->ID, 'pid', true );
+        
+        if ( false !== $is_first_order && strlen( $is_first_order ) > 0 ) {
+            echo "✔️ipay: $is_first_order";
+        }
+    }
+}
